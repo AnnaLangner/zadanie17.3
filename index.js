@@ -1,5 +1,5 @@
 var OSinfo = require('./modules/OSInfo');
-
+var ShapeTime = require('./modules/ShapeTime');
 
 process.stdin.setEncoding('utf-8');
 process.stdin.on('readable', function() {
@@ -16,6 +16,9 @@ process.stdin.on('readable', function() {
                 break;
             case '/getOSinfo':
     			OSinfo.print();
+    			break;
+    		case '/formatTime':
+    			ShapeTime.print();
     			break;
             default:
                 process.stderr.write('Wrong instruction!\n');
