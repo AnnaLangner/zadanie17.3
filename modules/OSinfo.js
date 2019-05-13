@@ -1,4 +1,5 @@
 var os = require('os');
+var ShapeTime = require('./ShapeTime');
 
 function getOSinfo() {
     var type = os.type();
@@ -9,14 +10,15 @@ function getOSinfo() {
     }
     var release = os.release();
     var cpu = os.cpus()[0].model;
-    var uptime = os.uptime();
+    //var uptime = os.uptime();
     var userInfo = os.userInfo();
     console.log('System:', type);
     console.log('Release:', release);
     console.log('CPU model:', cpu);
-    console.log('Uptime: ~', (uptime / 60).toFixed(0), 'min');
+    ShapeTime.print(); /*console.log('Uptime: ~', (uptime / 60).toFixed(0), 'min');*/
     console.log('User name:', userInfo.username);
     console.log('Home dir:', userInfo.homedir);
 }
 
 exports.print = getOSinfo;
+

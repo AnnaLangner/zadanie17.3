@@ -1,13 +1,13 @@
 var os = require('os');
 
-function formatTime(n) {
-	var time = 0;
+function formatTime() {
+	var uptime = os.uptime();
 	if (n < 60) {
-		return (time%60) + 's';
+		return (uptime%3600%60) + 's';
 	} if (n >= 60) {
-		return Math.floor((time%3600)/60) + 'min'
+		return Math.floor((uptime%3600)/60) + 'min'
 	} if (n >= 3600) {
-		return Math.floor(time/3600) + 'h'
+		return Math.floor(uptime/3600) + 'h'
 	}
 }
 
