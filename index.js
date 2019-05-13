@@ -19,5 +19,5 @@ process.stdin.on('readable', function() {
     }
 });
 
-console.log(process.versions);
-console.log(process.env);
+process.stdout.write(process.versions.node);
+process.stdout.write(process.env.lang);
