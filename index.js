@@ -15,9 +15,7 @@ process.stdin.on('readable', function() {
                 break;
             default:
                 process.stderr.write('Wrong instruction!\n');
+                process.stdout.write('\r\nNode Version: ' + nodeVersion + '\r\nYour language: ' + userLanguage);
         };
     }
 });
-
-process.stdout.write(process.versions.node);
-process.stdout.write(process.env.lang);
