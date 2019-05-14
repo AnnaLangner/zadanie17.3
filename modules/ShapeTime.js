@@ -1,14 +1,14 @@
-// var os = require('os');
+var os = require('os');	
+var colors = require('colors');
 
-// function formatTime() {
-// 	var uptime = os.uptime();
-// 	if (n < 60) {
-// 		return (uptime%3600%60) + 's';
-// 	} if (n >= 60) {
-// 		return Math.floor((uptime%3600)/60) + 'min'
-// 	} if (n >= 3600) {
-// 		return Math.floor(uptime/3600) + 'h'
-// 	}
-// }
+function ShapeTime() {
 
-// exports.print = formatTime;
+	var uptime = os.uptime();
+	var hours = Math.floor(uptime/3600).toFixed(0);
+	var minutes = Math.floor((uptime - hours*3600) /60).toFixed(0);
+	var seconds = Math.floor(uptime - hours*3600 -minutes*60).toFixed(0);
+	
+	console.log('Uptime: ~'.green, hours, 'h ', minutes, 'min ', seconds, 's');
+};
+
+exports.print = ShapeTime;
