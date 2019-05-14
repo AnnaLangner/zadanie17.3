@@ -1,5 +1,5 @@
 var os = require('os');
-//var ShapeTime = require('./ShapeTime');
+var ShapeTime = require('./ShapeTime');
 var colors = require('colors');
 
 function getOSinfo() {
@@ -16,7 +16,7 @@ function getOSinfo() {
     console.log('System:'.gray, type);
     console.log('Release:'.red, release);
     console.log('CPU model:'.blue, cpu);
-    /* ShapeTime.print(); */ console.log('Uptime: ~'.green, (uptime / 60).toFixed(0), 'min');
+    ShapeTime.print();
     console.log('User name:'.yellow, userInfo.username);
     console.log('Home dir:'.grey, userInfo.homedir);
 }
