@@ -1,6 +1,29 @@
 var EventEmitter = require("events").EventEmitter;
 var OSinfo = require('./modules/OSinfo');
 
+var fs = require('fs');
+var colors = require('colors');
+var StatMode = require('stat-mode');
+
+fs.stat('./cat.jpg', function(err, stats) {
+    var statMode = new StatMode(stats);
+    console.log(stats);
+});
+
+fs.readFile('./text.txt', 'utf-8', function(err, data) {
+    console.log('Data before saving!'.blue);
+    console.log(data);
+    fs.appendFile('./text.txt', 'And tha is how they look after the record!', function(err) {
+        if (err) throw err;
+        console.log('Saved!'.blue);
+        fs.readFile('./text.txt', 'utf-8', function(err, data) {
+            console.log('Data after saving'.blue)
+            console.log(data);
+        });
+    });
+});
+
+
 var emitter = new EventEmitter();
 emitter.on("beforeCommand", function (instruction) {
     console.log('You wrote: ' + instruction + ', trying to run command');
