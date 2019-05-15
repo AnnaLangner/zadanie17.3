@@ -20,13 +20,32 @@ fs.stat('./cat.jpg', function(err, stats) {
     console.log(stats);
 });
 
-fs.readFile('./text.txt', 'utf-8', function(err, data) {
+fs.readFile('./index.html', 'utf-8', function(err, data) {
     console.log('Data before saving!'.blue);
     console.log(data);
-    fs.appendFile('./text.txt', 'And tha is how they look after the record!', function(err) {
+
+    var http = require('http');
+
+    var server = http.createServer();
+
+    server.on('request', function (request, response) {
+        response.setHeader("Content-Type", "text/html; charset=utf-8");
+        if (request.method === 'GET' && request.url === '/hello') {
+            response.write('<h1>Hello World!</h1>');
+                response.end();
+        } else {
+                response.statusCode = 404;
+                response.write('<h1>404: Zła ścieżka!</h1>');
+                response.end();
+        }
+    });
+
+    server.listen(8080);
+
+    fs.appendFile('./index.html', 'And tha is how they look after the record!', function(err) {
         if (err) throw err;
         console.log('Saved!'.blue);
-        fs.readFile('./text.txt', 'utf-8', function(err, data) {
+        fs.readFile('./index.html', 'utf-8', function(err, data) {
             console.log('Data after saving'.blue)
             console.log(data);
         });
@@ -41,6 +60,14 @@ emitter.on("beforeCommand", function (instruction) {
 emitter.on("afterCommand", function () {
     console.log('Finished command');
 });
+
+var http = require('http');
+var server = http.createServer();
+server.on('request', function (request, response) {
+    response.write('hello world!');
+    response.end();
+});
+server.listen(9000);
 
 process.stdin.setEncoding('utf-8');
 process.stdin.on('readable', function() {
