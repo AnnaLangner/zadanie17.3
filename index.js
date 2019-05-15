@@ -5,6 +5,16 @@ var fs = require('fs');
 var colors = require('colors');
 var StatMode = require('stat-mode');
 
+fs.readFile('./index.js', 'utf-8', (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+
+fs.writeFile('./index2.js', 'utf-8', (data, err) => {
+  if (err) throw err;
+  console.log('The file has been saved!'.green);
+});
+
 fs.stat('./cat.jpg', function(err, stats) {
     var statMode = new StatMode(stats);
     console.log(stats);
