@@ -4,7 +4,7 @@ function ShapeTime(uptime) {
 	var minutes = Math.floor((uptime - hours*3600) /60).toFixed(0);
 	var seconds = Math.floor(uptime - hours*3600 -minutes*60).toFixed(0);
 	
-	return ('Uptime: ~', hours, 'h ', minutes, 'min ', seconds, 's');
+	return hours + 'h ' + minutes + 'min ' + seconds + 's';
 };
 
 exports.print = ShapeTime;
